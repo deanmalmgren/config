@@ -3,6 +3,9 @@
 ;;; uncomment this line to disable loading of "default.el" at startup
 ;;(setq inhibit-default-init t)
 
+;; add the site-lisp directory to the load path
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+
 ;; try to get emacs to load faster...this is ridiculous
 ;; EUREKA!!! http://ubuntuforums.org/archive/index.php/t-183638.html
 (modify-frame-parameters nil '((wait-for-wm . nil)))
@@ -43,22 +46,12 @@
 (setq backup-by-copying 1)
 
 ;; specify colors
-;; (set-foreground-color "white")
-;; (set-background-color "dark green")
-
-;; (set-foreground-color "lemon chiffon")
-;; (set-background-color "dark slate gray")
-;; (set-cursor-color "lemon chiffon")
-
-;; (set-foreground-color "wheat")
-;; (set-background-color "brown4")
-;; (set-cursor-color "white")
-
-;; (set-background-color "black")
-;; (set-foreground-color "white")
-
-;; (set-background-color "dim gray")
-;; (set-foreground-color "snow")
+(require 'color-theme)
+;; (color-theme-subtle-hacker)
+(load "~/.emacs.d/site-lisp/zenburn")
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-zenburn)))
 
 ;; stop emacs from loading
 (setq inhibit-startup-message t)
@@ -84,8 +77,6 @@
 ;; (add-hook 'text-mode-hook
 ;; 	  '(lambda () (set-fill-column 79)))
 
-
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
 ;; ;; povray stuff
 ;; (add-to-list 'load-path "~/bin/pov-mode-3.2")
