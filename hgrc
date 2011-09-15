@@ -1,0 +1,15 @@
+# username nonsense
+[ui]
+username = Dean Malmgren <dean.malmgren@datascopeanalytics.com>
+ssh = ssh -C
+
+[extensions]
+hgext.convert =
+fetch =
+hgext.mq =
+
+# personal aliases
+[alias]
+st = st -S
+heads = heads -t
+
