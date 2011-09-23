@@ -9,6 +9,7 @@ and add them as dotted soft links. e.g.,
 import glob
 import os
 import sys
+import shutil
 
 if __name__=="__main__":
 
@@ -20,7 +21,10 @@ if __name__=="__main__":
                 os.path.join("~", '.' + os.path.basename(filename))
             )
             if os.path.exists(linkname):
-                os.remove(linkname)
+                try:
+                    os.remove(linkname)
+                except OSError:
+                    shutil.rmtree(linkname)
             os.symlink(filename, linkname)
             
             sys.stderr.write("ln -s %s %s\n"%(filename, linkname))
