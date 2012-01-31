@@ -97,6 +97,11 @@
 (setq scss-compile-at-save nil)
 (setq css-indent-offset 2)
 
+;; deal with editing xsd documents
+;; HACKED TOGETHER ON METRA, PROBABLY BETTER WAY TO DO THIS
+(autoload 'xml-mode "xml-mode")
+(add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
+
 ;; set font size
 (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
 
