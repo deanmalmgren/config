@@ -125,6 +125,6 @@ HISTTIMEFORMAT="%Y.%m.%d %H:%M:%S "
 HISTSIZE=10000
 
 #--------------------------------------------------------------------
-# commands to run when shell is instantiated
+# source django bash completion script
 #--------------------------------------------------------------------
-#ls
+source .django_bash_completion.sh
