@@ -109,3 +109,11 @@
 ;; the command line.  what the fuck
 (set-frame-width (selected-frame) 80)
 ;;(set-frame-height (selected-frame) 80)
+
+;; setup markdown mode. for details, see here:
+;; http://jblevins.org/projects/markdown-mode/
+(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t) 
+(setq auto-mode-alist (cons '("\\.text" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.mdt" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.mdwn" . markdown-mode) auto-mode-alist))
