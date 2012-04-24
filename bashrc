@@ -127,4 +127,4 @@ HISTSIZE=10000
 #--------------------------------------------------------------------
 # source django bash completion script
 #--------------------------------------------------------------------
-source .django_bash_completion.sh
+source ~/.django_bash_completion.sh
