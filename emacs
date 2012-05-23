@@ -117,3 +117,8 @@
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mdt" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mdwn" . markdown-mode) auto-mode-alist))
+
+;; setup handlebars mode. for details, see here:
+;; https://github.com/danielevans/handlebars-mode
+(add-to-list 'load-path "~/.emacs.d/vendor/")
+(require 'handlebars-mode)
