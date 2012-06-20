@@ -8,6 +8,7 @@ hgext.convert =
 fetch =
 hgext.mq =
 record =
+rebase =
 
 # personal aliases
 [alias]
