@@ -42,6 +42,7 @@ alias processing="${HOME}/Software/processing-1.2.1/processing"
 function purge { for f in ${JUNK_FILES} ${DUMMY_FILES}; do if [ -f $f ]; then rm -f ${f} ; fi; done; }
 function fd { if [ $# -eq 1 ]; then cd "$1"; else cd; fi; ls; }
 function codylpr { scp $1 cody:/home/staff/rdm && ssh cody "lpr $1 && rm -i $1";}
+function whatsmyip { curl -s ifconfig.me/ip; }
 
 #--------------------------------------------------------------------
 # colors from http://systhread.net/texts/200703bashish.php
