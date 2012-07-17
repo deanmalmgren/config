@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 #--------------------------------------------------------------------
@@ -11,6 +11,8 @@ fi
 JUNK_FILES="*~ *.pyc *.fig.bak *.bib.bak *.blg *.end *.dvi *.aux *.bbl *.log *.toc *.nav *.out *.snm *.o *.orig "
 DUMMY_FILES="aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz"
 GREP_COLOR="1;32"
+X_RUNNING=0;
+X_RUNNING=$(pidof X && echo 1);
 
 export PATH=$PATH:${HOME}/Codes/Tools
 export PYTHONPATH=${HOME}/Codes:${HOME}/Biz/Codes
@@ -28,10 +30,13 @@ alias lla='ls --color=always -hla'
 alias l='ls --color=always -hl'
 alias dvips='dvips -t letter'
 alias xmgrace='xmgrace -geometry 844x673'
+alias ssh='/usr/bin/ssh -X'
 alias e='/usr/bin/emacs'
+if [ ! $X_RUNNING ] ; then
+    alias e='/usr/bin/emacs -nw'
+fi
 alias rm='rm -i'
 alias grep='grep --color=auto'
-alias ssh='/usr/bin/ssh -X'
 
 alias latexdiff='${HOME}/Software/latexdiff/latexdiff-fast'
 alias processing="${HOME}/Software/processing-1.2.1/processing"
