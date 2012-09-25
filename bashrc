@@ -32,7 +32,7 @@ alias dvips='dvips -t letter'
 alias xmgrace='xmgrace -geometry 844x673'
 alias ssh='/usr/bin/ssh -X'
 alias emacs='/usr/bin/emacs'
-if [ !$DISPLAY ] ; then
+if [ ! $DISPLAY ] ; then
     alias emacs='/usr/bin/emacs -nw'
 fi
 alias rm='rm -i'
