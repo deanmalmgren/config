@@ -31,9 +31,9 @@ alias l='ls --color=always -hl'
 alias dvips='dvips -t letter'
 alias xmgrace='xmgrace -geometry 844x673'
 alias ssh='/usr/bin/ssh -X'
-alias e='/usr/bin/emacs'
+alias emacs='/usr/bin/emacs'
 if [ !$DISPLAY ] ; then
-    alias e='/usr/bin/emacs -nw'
+    alias emacs='/usr/bin/emacs -nw'
 fi
 alias rm='rm -i'
 alias grep='grep --color=auto'
