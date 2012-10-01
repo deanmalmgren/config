@@ -30,13 +30,13 @@
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
 
-;; specify colors in emacs 23 https://github.com/bbatsov/zenburn-emacs
-(require 'color-theme-zenburn)
-(color-theme-zenburn)
-
-;; ;; specify colors in emacs 24 https://github.com/bbatsov/zenburn-emacs
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
-;; (load-theme 'zenburn t)
+;; specify colors https://github.com/bbatsov/zenburn-emacs 
+(when (equal emacs-major-version 23)
+  (require 'color-theme-zenburn)
+  (color-theme-zenburn))
+(when (equal emacs-major-version 24)
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
+  (load-theme 'zenburn t))
 
 ;; stop emacs from loading
 (setq inhibit-startup-message t)
