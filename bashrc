@@ -61,11 +61,8 @@ PS1="${WHITE}[${RED}\h ${WHITE}\W]$ ${NORMAL}"
 # record history usage (this is kind of a hack.  it would be much
 # better to use the 'history' command, but the current version of
 # history is not recent enough.)
-#--------------------------------------------------------------------
-# start recording history
-#script -a -f ${HOME}/.typescript
-
 # remember history (only works with bash 3.0)
+#--------------------------------------------------------------------
 HISTTIMEFORMAT="%Y.%m.%d %H:%M:%S "
 HISTSIZE=10000
 
