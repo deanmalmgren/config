@@ -59,7 +59,11 @@ function whatsmyip {
 # override the builtin cd function
 # http://askubuntu.com/questions/16106/how-can-i-create-an-alias-for-cd-and-ls/16116#16116
 function cd() {
-    builtin cd "$*" && ls
+    d="$*";
+    if [ $# -eq 0 ]; then
+	d=${HOME};
+    fi;
+    builtin cd ${d} && ls
 }
 
 #--------------------------------------------------------------------
