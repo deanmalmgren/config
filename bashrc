@@ -44,11 +44,19 @@ export DJANGO_PROJECTS=${HOME}/Biz/Projects/Website/
 #--------------------------------------------------------------------
 # User functions
 #--------------------------------------------------------------------
-function purge { for f in ${JUNK_FILES} ${DUMMY_FILES}; do if [ -f $f ]; then rm -f ${f} ; fi; done; }
-function codylpr { scp $1 cody:/home/staff/rdm && ssh cody "lpr $1 && rm -i $1";}
-function whatsmyip { curl -s ifconfig.me/ip; }
-
-function fd { if [ $# -eq 1 ]; then cd "$1"; else cd; fi; ls; }
+function purge { 
+    for f in ${JUNK_FILES} ${DUMMY_FILES}; do 
+        if [ -f $f ]; then 
+            rm -f ${f} ; 
+        fi; 
+    done; 
+}
+function whatsmyip { 
+    curl -s ifconfig.me/ip; 
+}
+function cd() {
+    builtin cd "$*" && ls
+}
 
 #--------------------------------------------------------------------
 # define interactive shell
