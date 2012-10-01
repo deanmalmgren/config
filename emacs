@@ -45,13 +45,13 @@
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
 
-;; specify colors
-(require 'color-theme)
-;; (color-theme-subtle-hacker)
-(load "~/.emacs.d/site-lisp/zenburn")
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-zenburn)))
+;; specify colors in emacs 23 https://github.com/bbatsov/zenburn-emacs
+(require 'color-theme-zenburn)
+(color-theme-zenburn)
+
+;; ;; specify colors in emacs 24 https://github.com/bbatsov/zenburn-emacs
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
+;; (load-theme 'zenburn t)
 
 ;; stop emacs from loading
 (setq inhibit-startup-message t)
