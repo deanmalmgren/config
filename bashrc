@@ -45,77 +45,16 @@ export DJANGO_PROJECTS=${HOME}/Biz/Projects/Website/
 # User functions
 #--------------------------------------------------------------------
 function purge { for f in ${JUNK_FILES} ${DUMMY_FILES}; do if [ -f $f ]; then rm -f ${f} ; fi; done; }
-function fd { if [ $# -eq 1 ]; then cd "$1"; else cd; fi; ls; }
 function codylpr { scp $1 cody:/home/staff/rdm && ssh cody "lpr $1 && rm -i $1";}
 function whatsmyip { curl -s ifconfig.me/ip; }
 
-#--------------------------------------------------------------------
-# colors from http://systhread.net/texts/200703bashish.php
-#--------------------------------------------------------------------
-DULL=0
-BRIGHT=1
-
-FG_BLACK=30
-FG_RED=31
-FG_GREEN=32
-FG_YELLOW=33
-FG_BLUE=34
-FG_VIOLET=35
-FG_CYAN=36
-FG_WHITE=37
-
-FG_NULL=00
-
-BG_BLACK=40
-BG_RED=41
-BG_GREEN=42
-BG_YELLOW=43
-BG_BLUE=44
-BG_VIOLET=45
-BG_CYAN=46
-BG_WHITE=47
-
-BG_NULL=00
-
-# ANSI Escape Commands
-ESC="\033"
-NORMAL="\[$ESC[m\]"
-RESET="\[$ESC[${DULL};${FG_WHITE};${BG_NULL}m\]"
-
-# Shortcuts for Colored Text ( Bright and FG Only )
-# DULL TEXT
-BLACK="\[$ESC[${DULL};${FG_BLACK}m\]"
-RED="\[$ESC[${DULL};${FG_RED}m\]"
-GREEN="\[$ESC[${DULL};${FG_GREEN}m\]"
-YELLOW="\[$ESC[${DULL};${FG_YELLOW}m\]"
-BLUE="\[$ESC[${DULL};${FG_BLUE}m\]"
-VIOLET="\[$ESC[${DULL};${FG_VIOLET}m\]"
-CYAN="\[$ESC[${DULL};${FG_CYAN}m\]"
-WHITE="\[$ESC[${DULL};${FG_WHITE}m\]"
-
-# BRIGHT TEXT
-BRIGHT_BLACK="\[$ESC[${BRIGHT};${FG_BLACK}m\]"
-BRIGHT_RED="\[$ESC[${BRIGHT};${FG_RED}m\]"
-BRIGHT_GREEN="\[$ESC[${BRIGHT};${FG_GREEN}m\]"
-BRIGHT_YELLOW="\[$ESC[${BRIGHT};${FG_YELLOW}m\]"
-BRIGHT_BLUE="\[$ESC[${BRIGHT};${FG_BLUE}m\]"
-BRIGHT_VIOLET="\[$ESC[${BRIGHT};${FG_VIOLET}m\]"
-BRIGHT_CYAN="\[$ESC[${BRIGHT};${FG_CYAN}m\]"
-BRIGHT_WHITE="\[$ESC[${BRIGHT};${BG_WHITE}m\]"
-
-# REV TEXT (as an example)
-REV_CYAN="\[$ESC[${DULL};${BG_WHITE};${BG_CYAN}m\]"
-REV_RED="\[$ESC[${DULL};${FG_YELLOW}; ${BG_RED}m\]"
-
-#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}"; echo -ne "\007";'
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007";'
+function fd { if [ $# -eq 1 ]; then cd "$1"; else cd; fi; ls; }
 
 #--------------------------------------------------------------------
 # define interactive shell
 #--------------------------------------------------------------------
-#TIME=$(date +%Y.%m.%d\ %T)
-#PS1="\[\033[0;37m\][\[\033[0;31m\]\$TIME \[\033[0;37m\]\W]$ \[\033[0m\]"
-#PS1="${WHITE}[${RED}`date +%Y.%m.%d\ %T` ${WHITE}\W]$ ${NORMAL}"
+source ~/.bash_colors
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007";'
 PS1="${WHITE}[${RED}\h ${WHITE}\W]$ ${NORMAL}"
 
 #--------------------------------------------------------------------
