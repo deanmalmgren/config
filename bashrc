@@ -6,22 +6,6 @@ if [ -f /etc/bashrc ]; then
 fi
 
 #--------------------------------------------------------------------
-# User specific global variables
-#--------------------------------------------------------------------
-JUNK_FILES="*~ *.pyc *.fig.bak *.bib.bak *.blg *.end *.dvi *.aux *.bbl *.log *.toc *.nav *.out *.snm *.o *.orig "
-DUMMY_FILES="aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz"
-GREP_COLOR="1;32"
-X_RUNNING=0;
-X_RUNNING=$(pidof X && echo 1);
-
-export PATH=$PATH:${HOME}/Codes/Tools
-export PYTHONPATH=${HOME}/Codes:${HOME}/Biz/Codes
-export EDITOR="/usr/bin/emacs -nw"
-
-# tweeks for using django
-export DJANGO_PROJECTS=${HOME}/Biz/Projects/Website/
-
-#--------------------------------------------------------------------
 # User specific aliases
 #--------------------------------------------------------------------
 alias ls='ls --color=always -h'
@@ -31,15 +15,31 @@ alias l='ls --color=always -hl'
 alias dvips='dvips -t letter'
 alias xmgrace='xmgrace -geometry 844x673'
 alias ssh='/usr/bin/ssh -X'
-alias emacs='/usr/bin/emacs'
-if [ ! $DISPLAY ] ; then
-    alias emacs='/usr/bin/emacs -nw'
-fi
 alias rm='rm -i'
 alias grep='grep --color=auto'
 
+# set up editor 
+export EDITOR="/usr/bin/emacs -nw"
+alias emacs='/usr/bin/emacs -fh'
+if [ ! $DISPLAY ] ; then
+    alias emacs='/usr/bin/emacs -nw'
+fi
+
 alias latexdiff='${HOME}/Software/latexdiff/latexdiff-fast'
 alias processing="${HOME}/Software/processing-1.2.1/processing"
+
+#--------------------------------------------------------------------
+# User specific global variables
+#--------------------------------------------------------------------
+JUNK_FILES="*~ *.pyc *.fig.bak *.bib.bak *.blg *.end *.dvi *.aux *.bbl *.log *.toc *.nav *.out *.snm *.o *.orig "
+DUMMY_FILES="aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz"
+GREP_COLOR="1;32"
+
+export PATH=$PATH:${HOME}/Codes/Tools
+export PYTHONPATH=${HOME}/Codes:${HOME}/Biz/Codes
+
+# tweeks for using django
+export DJANGO_PROJECTS=${HOME}/Biz/Projects/Website/
 
 #--------------------------------------------------------------------
 # User functions
