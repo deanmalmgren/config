@@ -1,7 +1,10 @@
 ;; .emacs
 
-;;; uncomment this line to disable loading of "default.el" at startup
-;;(setq inhibit-default-init t)
+;; hide the emacs help screen / splash page on open
+;; http://stackoverflow.com/a/744685/564709
+(setq inhibit-default-init t)
+(setq inhibit-startup-message t)
+(add-hook 'emacs-startup-hook 'delete-other-windows)
 
 ;; add the site-lisp directory to the load path
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
@@ -23,24 +26,6 @@
 
 ;; emacs vc-hg not working properly
 (setq vc-handled-backends nil) 
-
-;; ;; default to unified diffs
-;; (setq diff-switches "-u")
-;; (custom-set-variables
-;;   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-;;   ;; Your init file should contain only one such instance.
-;;  '(auto-compression-mode t nil (jka-compr))
-;;  '(case-fold-search t)
-;;  '(current-language-environment "UTF-8")
-;;  '(default-input-method "rfc1345")
-;;  '(global-font-lock-mode t nil (font-lock))
-;;  '(show-paren-mode t nil (paren))
-;; ;; '(text-mode-hook (quote (turn-on-auto-fill text-mode-hook-identify)))
-;;  '(transient-mark-mode t))
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-;;   ;; Your init file should contain only one such instance.
-;;  )
 
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
@@ -65,9 +50,6 @@
 ;; turn on paren matching
 (show-paren-mode 1)
 
-;; set python block comment prefix
-(defvar py-block-comment-prefix "##")
-
 ;; turn off the friggin bell
 (setq-default visible-bell t)
 
@@ -77,6 +59,8 @@
 ;; (add-hook 'text-mode-hook
 ;; 	  '(lambda () (set-fill-column 79)))
 
+;; set python block comment prefix
+(defvar py-block-comment-prefix "##")
 
 ;; ;; povray stuff
 ;; (add-to-list 'load-path "~/bin/pov-mode-3.2")
