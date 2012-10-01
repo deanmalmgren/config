@@ -1,4 +1,8 @@
-;; .emacs
+;;====================================================== general emacs behavior
+;; tweak the window settings by turning off the scrollbar and removing
+;; the toolbar. NOTE: this has to be at the top to properly omit the toolbar
+(set-scroll-bar-mode nil)
+(tool-bar-mode -1)
 
 ;; hide the emacs help screen / splash page on open
 ;; http://stackoverflow.com/a/744685/564709
@@ -16,9 +20,6 @@
 ;; turn on font-lock mode
 (when (fboundp 'global-font-lock-mode)
   (global-font-lock-mode t))
-
-;; enable visual feedback on selections
-;; (setq transient-mark-mode t)
 
 ;; default to better frame titles
 (setq frame-title-format
@@ -38,14 +39,13 @@
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
   (load-theme 'zenburn t))
 
-;; stop emacs from loading
-(setq inhibit-startup-message t)
+;; set font size
+(set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
 
-;; scrollbar off
-(set-scroll-bar-mode nil)
-
-;; turn off the toolbar
-(tool-bar-mode -1)
+;; set frame size --- i can't believe that this can not be done from
+;; the command line.  what the fuck
+(set-frame-width (selected-frame) 80)
+;;(set-frame-height (selected-frame) 80)
 
 ;; turn on paren matching
 (show-paren-mode 1)
@@ -53,20 +53,9 @@
 ;; turn off the friggin bell
 (setq-default visible-bell t)
 
-;; make sure we have auto-fill mode in text files
-;; (add-hook 'text-mode-hook
-;; 	  '(lambda () (auto-fill-mode 1)))
-;; (add-hook 'text-mode-hook
-;; 	  '(lambda () (set-fill-column 79)))
-
+;;====================================================== file-specific bindings
 ;; set python block comment prefix
 (defvar py-block-comment-prefix "##")
-
-;; ;; povray stuff
-;; (add-to-list 'load-path "~/bin/pov-mode-3.2")
-;; (autoload 'pov-mode "pov-mode" "PoVray scene file mode" t)
-;; (add-to-list 'auto-mode-alist '("\\.pov\\'" . pov-mode))
-;; (add-to-list 'auto-mode-alist '("\\.inc\\'" . pov-mode))
 
 ;; deal with javascript mode
 ;; http://xahlee.org/emacs/emacs_installing_packages.html
@@ -86,17 +75,10 @@
 (autoload 'xml-mode "xml-mode")
 (add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
 
-;; set font size
-(set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
-
-;; set frame size --- i can't believe that this can not be done from
-;; the command line.  what the fuck
-(set-frame-width (selected-frame) 80)
-;;(set-frame-height (selected-frame) 80)
-
 ;; setup markdown mode. for details, see here:
 ;; http://jblevins.org/projects/markdown-mode/
-(autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t) 
+(autoload 'markdown-mode "markdown-mode.el" 
+	  "Major mode for editing Markdown files" t) 
 (setq auto-mode-alist (cons '("\\.text" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mdt" . markdown-mode) auto-mode-alist))
