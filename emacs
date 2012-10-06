@@ -32,12 +32,32 @@
 (setq backup-by-copying 1)
 
 ;; specify colors https://github.com/bbatsov/zenburn-emacs 
-(when (equal emacs-major-version 23)
-  (require 'color-theme-zenburn)
-  (color-theme-zenburn))
+(when (= emacs-major-version 23)
+  (when (= emacs-minor-version 1)
+    (require 'color-theme)
+    ;; (color-theme-subtle-hacker)
+    (load "~/.emacs.d/site-lisp/zenburn-23.1.1")
+    (eval-after-load "color-theme"
+      '(progn
+	 (color-theme-zenburn)))
+  )
+  (when (> emacs-minor-version 1)
+    (require 'color-theme-zenburn)
+    (color-theme-zenburn)
+  )
+)
 (when (equal emacs-major-version 24)
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
-  (load-theme 'zenburn t))
+  (load-theme 'zenburn t)
+)
+
+;; specify colors
+(require 'color-theme)
+;; (color-theme-subtle-hacker)
+(load "~/.emacs.d/site-lisp/zenburn-23.1.1")
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-zenburn)))
 
 ;; set font size
 (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
