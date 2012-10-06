@@ -47,6 +47,10 @@
 (set-frame-width (selected-frame) 80)
 ;;(set-frame-height (selected-frame) 80)
 
+;; enable emacs copy to put data in system clipboard
+;; http://stackoverflow.com/a/65473/564709
+(setq x-select-enable-clipboard t)
+
 ;; turn on paren matching
 (show-paren-mode 1)
 
