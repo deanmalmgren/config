@@ -67,7 +67,7 @@ function cd() {
     if [ $# -eq 0 ]; then
 	d=${HOME};
     fi;
-    builtin cd ${d} && ls
+    builtin cd "${d}" && ls
 }
 
 # define interactive shell

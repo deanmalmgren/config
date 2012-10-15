@@ -9,7 +9,7 @@ fetch =
 hgext.mq =
 record =
 rebase =
-hgext.hbisect = 
+#hgext.hbisect = 
 
 # personal aliases
 [alias]
