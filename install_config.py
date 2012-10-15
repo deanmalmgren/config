@@ -14,8 +14,6 @@ import sys
 import shutil
 from optparse import OptionParser
 
-from fabric.api import *
-
 def replace_with_softlink(filename, linkname):
     """create softline and remove if it already exists
     """
@@ -112,6 +110,10 @@ if __name__=="__main__":
     # setup a remote server
     else:
         
+        # import fabric here so that this isn't a dependency when it
+        # doesn't need to be
+        from fabric.api import *
+
         # get root directory
         local_dir = os.path.dirname(os.path.abspath(__file__))
 
