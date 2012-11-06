@@ -37,25 +37,39 @@
 ;;
 ;; $ sudo apt-get install emacs-goodies-el
 
-;; specify colors https://github.com/bbatsov/zenburn-emacs 
-(when (= emacs-major-version 23)
-  (when (= emacs-minor-version 1)
-    (require 'color-theme)
-    ;; (color-theme-subtle-hacker)
-    (load "~/.emacs.d/site-lisp/zenburn-23.1.1")
-    (eval-after-load "color-theme"
-      '(progn
-	 (color-theme-zenburn)))
-  )
-  (when (> emacs-minor-version 1)
-    (require 'color-theme-zenburn)
-    (color-theme-zenburn)
-  )
+;; ;; specify colors https://github.com/bbatsov/zenburn-emacs 
+;; (when (= emacs-major-version 23)
+;;   (when (= emacs-minor-version 1)
+;;     (require 'color-theme)
+;;     (load "~/.emacs.d/site-lisp/zenburn-23.1.1")
+;;     (eval-after-load "color-theme"
+;;       '(progn
+;;   	 (color-theme-zenburn)))
+;;   )
+;;   (when (> emacs-minor-version 1)
+;;     (require 'color-theme-zenburn)
+;;     (color-theme-zenburn)
+;;   )
+;; )
+;; (when (equal emacs-major-version 24)
+;;   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
+;;   (load-theme 'zenburn t)
+;; )
+
+;; use solarized color them
+;; https://github.com/sellout/emacs-color-theme-solarized
+(when (< emacs-major-version 24)
+  (add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
+  (require 'color-theme-solarized)
+  (color-theme-solarized-dark)
+  ;; (color-theme-solarized-light)
 )
 (when (equal emacs-major-version 24)
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
-  (load-theme 'zenburn t)
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized") 
+  (load-theme 'solarized-dark t)
+  ;; (load-theme 'solarized-light t)
 )
+
 
 ;; set font size
 (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
