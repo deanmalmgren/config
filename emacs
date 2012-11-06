@@ -70,9 +70,8 @@
   ;; (load-theme 'solarized-light t)
 )
 
-
-;; set font size
-(set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
+;; ;; set font size
+;; (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
 
 ;; set frame size --- i can't believe that this can not be done from
 ;; the command line.  what the fuck
