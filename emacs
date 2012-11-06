@@ -11,7 +11,7 @@
 (add-hook 'emacs-startup-hook 'delete-other-windows)
 
 ;; add the site-lisp directory to the load path
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 ;; try to get emacs to load faster...this is ridiculous
 ;; EUREKA!!! http://ubuntuforums.org/archive/index.php/t-183638.html
@@ -30,6 +30,12 @@
 
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
+
+;; NOTE: if color-theme is breaking, make sure it is properly
+;; installed on this system (http://www.nongnu.org/color-theme/). In
+;; ubuntu, this means running
+;;
+;; $ sudo apt-get install emacs-goodies-el
 
 ;; specify colors https://github.com/bbatsov/zenburn-emacs 
 (when (= emacs-major-version 23)
@@ -50,14 +56,6 @@
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
   (load-theme 'zenburn t)
 )
-
-;; specify colors
-(require 'color-theme)
-;; (color-theme-subtle-hacker)
-(load "~/.emacs.d/site-lisp/zenburn-23.1.1")
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-zenburn)))
 
 ;; set font size
 (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
@@ -90,7 +88,7 @@
 ;; deal with scss mode
 ;; http://www.emacswiki.org/emacs/ScssMode
 (autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
 (setq scss-compile-at-save nil)
 (setq css-indent-offset 2)
 
