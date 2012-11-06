@@ -15,12 +15,18 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # make sure top orders by cpu usage first in OSX
     alias top='top -o cpu'
 
+    # set the emacs bin
+    emacsbin='/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs'
+
 # Linux-specific aliases
 elif [[ "$(uname)" == "Linux" ]]; then
     alias ls='ls --color=always -h'
     alias la='ls --color=always -ha'
     alias lla='ls --color=always -hla'
     alias l='ls --color=always -hl'
+
+    # set the emacs bin
+    emacsbin='/usr/bin/emacs'
 
 # issue warning
 else
@@ -38,10 +44,10 @@ GREP_COLOR="1;32"
 alias grep='grep --color=auto'
 
 # set up editor 
-export EDITOR="/usr/bin/emacs -nw"
-alias emacs='/usr/bin/emacs -fh'
+export EDITOR=$emacsbin" -nw"
+alias emacs=$emacsbin' -fh'
 if [ ! $DISPLAY ] ; then
-    alias emacs='/usr/bin/emacs -nw'
+    alias emacs=$emacsbin' -nw'
 fi
 
 # purge function to clear out crap from directories
