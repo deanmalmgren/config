@@ -43,6 +43,15 @@ alias rm='rm -i'
 GREP_COLOR="1;32"
 alias grep='grep --color=auto'
 
+# configure cal to print out calendar for current year by default
+function cal () {
+    if [ $# -eq 0 ]; then
+	/usr/bin/cal `date "+%Y"`;
+    else
+	/usr/bin/cal $*;
+    fi;
+}
+
 # set up editor 
 export EDITOR=$emacsbin" -nw"
 alias emacs=$emacsbin' -fh'
