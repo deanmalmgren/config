@@ -96,3 +96,6 @@ HISTSIZE=10000
 
 # source django bash completion script
 source ~/.django_bash_completion.sh
+
+# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
+complete -W "$(echo `grep "^Host " ~/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
