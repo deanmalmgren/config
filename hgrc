@@ -10,6 +10,8 @@ hgext.mq =
 record =
 rebase =
 #hgext.hbisect = 
+hgext.bookmarks = 
+hggit = 
 
 # personal aliases
 [alias]
