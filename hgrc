@@ -4,6 +4,7 @@ username = Dean Malmgren <dean.malmgren@datascopeanalytics.com>
 ssh = ssh -C
 
 [extensions]
+color =
 hgext.convert =
 fetch =
 hgext.mq =
