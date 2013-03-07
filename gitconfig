@@ -5,3 +5,5 @@
 	status = auto
 	branch = auto
 	ui = true
+[core]
+	excluesfile = /home/rdm/.gitignore

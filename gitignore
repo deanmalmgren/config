@@ -1,0 +1,10 @@
+# this is a global .gitignore for this user on this computer. see
+# https://help.github.com/articles/ignoring-files for more details
+
+# emacs junk
+*~
+
+# OSX junk
+.DS_Store
+.DS_Store?
+
