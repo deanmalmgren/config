@@ -7,3 +7,4 @@
 	ui = true
 [core]
 	excluesfile = /home/rdm/.gitignore
+	excludesfile = /home/rdm/.gitignore_global
