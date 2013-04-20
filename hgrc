@@ -2,6 +2,7 @@
 [ui]
 username = Dean Malmgren <dean.malmgren@datascopeanalytics.com>
 ssh = ssh -C
+ignore = ~/.hgignore
 
 [extensions]
 color =
