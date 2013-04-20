@@ -19,3 +19,6 @@ hggit =
 st = st -S
 heads = heads -t
 
+# trusted users
+[trusted]
+users = ahwolf, stringer
