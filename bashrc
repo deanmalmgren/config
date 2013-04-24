@@ -36,8 +36,22 @@ fi
 # other aliases
 alias dvips='dvips -t letter'
 alias xmgrace='xmgrace -geometry 844x673'
-alias ssh='/usr/bin/ssh -X'
 alias rm='rm -i'
+
+# set up ssh to recognize a bunch of project-specific ssh config
+# files. this is useful for maintaining an ever-growing number of
+# servers we need to ssh to on a project-by-project basis
+# http://superuser.com/a/414310/126633
+function ssh () {
+    tmp_fifo=$(mktemp --suffix=_ssh_fifo)
+    cat ~/.ssh/config ~/Projects/*/.ssh/config > "$tmp_fifo"
+    # /usr/bin/ssh -F "$tmp_fifo" -X "$@"
+    /usr/bin/ssh -F "$tmp_fifo" "$@"
+    /bin/rm -f "$tmp_fifo"
+}
+
+# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
+complete -W "$(echo `grep "^Host " ~/.ssh/config ~/Projects/*/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
 
 # configure color output for grep
 GREP_COLOR="1;32"
@@ -96,6 +110,3 @@ HISTSIZE=10000
 
 # source django bash completion script
 source ~/.django_bash_completion.sh
-
-# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
-complete -W "$(echo `grep "^Host " ~/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
