@@ -16,7 +16,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     alias top='top -o cpu'
 
     # set the emacs bin
-    emacsbin='/Applications/MacPorts/Emacs.app/Contents/MacOS/Emacs'
+    emacsbin='/Users/rdm/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # Linux-specific aliases
 elif [[ "$(uname)" == "Linux" ]]; then
