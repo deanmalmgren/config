@@ -1,5 +1,8 @@
-look at the world through my eyes
+a haiku
+=======
 
-this should be a poem
+i look at the world 
 
-but its not.
+through my configuration
+
+would you like to, too?
