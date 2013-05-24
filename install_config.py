@@ -32,9 +32,13 @@ def local_setup_softlinks(homedir):
     """
     this_filename = os.path.abspath(__file__)
     this_dirname = os.path.dirname(this_filename)
+    disallowed_files = set((
+        this_filename,
+        os.path.join(this_dirname, "README.md"),
+    ))
     filenames = glob.iglob(os.path.join(this_dirname,"*"))
     for filename in filenames:
-        if filename != this_filename and not filename.endswith("~"):
+        if filename not in disallowed_files and not filename.endswith("~"):
             linkname = os.path.expanduser(
                 os.path.join(homedir, '.' + os.path.basename(filename))
             )
