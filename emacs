@@ -70,8 +70,9 @@
   ;; (load-theme 'solarized-light t)
 )
 
-;; ;; set font size
-;; (set-default-font "-misc-fixed-medium-r-semicondensed-*-13-*-*-*-c-*-koi8-r")
+;; set font size
+;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
+(set-face-attribute 'default nil :height 100)
 
 ;; set frame size --- i can't believe that this can not be done from
 ;; the command line.  what the fuck
