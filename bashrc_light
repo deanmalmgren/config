@@ -1,0 +1,4 @@
+# define interactive shell
+source ~/.bash_colors
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007";'
+PS1="${BLACK}[${RED}\h ${BLACK}\W]$ ${NORMAL}"
