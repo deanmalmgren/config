@@ -69,7 +69,11 @@ function cal () {
 
 # set up editor 
 export EDITOR=$emacsbin" -nw"
-alias emacs=$emacsbin' -fh'
+if [[ "$(uname)" == "Darwin" ]]; then
+    alias emacs=$emacsbin' -geometry 80x56'
+else
+    alias emacs=$emacsbin' -fh'
+fi
 if [ ! $DISPLAY ] ; then
     alias emacs=$emacsbin' -nw'
 fi
