@@ -10,7 +10,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     alias ls='ls -Gh'
     alias la='ls -Gha'
     alias lla='ls -Ghla'
-    alias l='ls -Ghl'
+    alias l='ls -Ghlrt'
 
     # make sure top orders by cpu usage first in OSX
     alias top='top -o cpu'
@@ -18,12 +18,16 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # set the emacs bin
     emacsbin='/Users/rdm/Applications/Emacs.app/Contents/MacOS/Emacs'
 
+    # set PYTHONPATH so that meld will work
+    # https://github.com/mxcl/homebrew/issues/20644
+    export PYTHONPATH=$(brew --prefix)/lib/python2.6/site-packages:$PYTHONPATH
+
 # Linux-specific aliases
 elif [[ "$(uname)" == "Linux" ]]; then
     alias ls='ls --color=always -h'
     alias la='ls --color=always -ha'
     alias lla='ls --color=always -hla'
-    alias l='ls --color=always -hl'
+    alias l='ls --color=always -hlrt'
 
     # set the emacs bin
     emacsbin='/usr/bin/emacs'
@@ -70,7 +74,7 @@ function cal () {
 # set up editor 
 export EDITOR=$emacsbin" -nw"
 if [[ "$(uname)" == "Darwin" ]]; then
-    alias emacs=$emacsbin' -geometry 80x56'
+    alias emacs=$emacsbin' -geometry 80x57'
 else
     alias emacs=$emacsbin' -fh'
 fi
