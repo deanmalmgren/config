@@ -128,3 +128,16 @@
 ;; Setup puppet-mode for autoloading
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
 (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
+
+;; nice for auto-indenting when possible
+(defun indent ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+;; these are handy
+(global-set-key [f4] 'goto-line)
+(global-set-key [f5] 'query-replace)
+(global-set-key [f6] 'indent)
