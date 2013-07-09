@@ -8,3 +8,5 @@
 [core]
 	excluesfile = /home/rdm/.gitignore
 	excludesfile = ~/.gitignore_global
+[push]
+	default = matching
