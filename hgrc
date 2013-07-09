@@ -18,7 +18,7 @@ hggit =
 # personal aliases
 [alias]
 st = st -S
-heads = heads -t
+#heads = heads -t
 
 # trusted users
 [trusted]
