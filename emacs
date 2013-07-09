@@ -115,10 +115,10 @@
 ;; http://jblevins.org/projects/markdown-mode/
 (autoload 'markdown-mode "markdown-mode.el" 
 	  "Major mode for editing Markdown files" t) 
-(setq auto-mode-alist (cons '("\\.text" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.md" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.mdt" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.mdwn" . markdown-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mdt" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.mdwn" . markdown-mode))
 
 ;; setup handlebars mode. for details, see here:
 ;; https://github.com/danielevans/handlebars-mode
