@@ -98,6 +98,8 @@
 (autoload #'espresso-mode "espresso" "Start espresso-mode" t)
 (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
+;; (add-hook 'espresso-mode-hook '(setq default-tab-width 2))
+;; (add-hook 'espresso-mode-hook '(setq indent-tabs-mode nil))
 
 ;; deal with scss mode
 ;; http://www.emacswiki.org/emacs/ScssMode
