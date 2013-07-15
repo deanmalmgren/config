@@ -5,6 +5,11 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# define absolute path to home directory so this can be used on OSX
+# and linux and referenced by other users (e.g., a vagrant user)
+# http://stackoverflow.com/q/59895/564709
+home=$(dirname ${BASH_SOURCE[0]})
+
 # OSX-specific aliases
 if [[ "$(uname)" == "Darwin" ]]; then
     alias ls='ls -Gh'
@@ -48,15 +53,15 @@ alias rm='rm -i'
 # # http://superuser.com/a/414310/126633
 # function ssh () {
 #     tmp_fifo=$(mktemp --suffix=_ssh_fifo)
-#     cat ~/.ssh/config ~/Projects/*/.ssh/config > "$tmp_fifo"
+#     cat ${home}/.ssh/config ${home}/Projects/*/.ssh/config > "$tmp_fifo"
 #     # /usr/bin/ssh -F "$tmp_fifo" -X "$@"
 #     /usr/bin/ssh -F "$tmp_fifo" "$@"
 #     /bin/rm -f "$tmp_fifo"
 # }
 
 # autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
-touch ~/.ssh/config
-complete -W "$(echo `grep "^Host " ~/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
+touch ${home}/.ssh/config
+complete -W "$(echo `grep "^Host " ${home}/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
 
 # configure color output for grep
 GREP_COLOR="1;32"
@@ -109,7 +114,7 @@ function cd() {
 }
 
 # define interactive shell
-source ~/.bash_colors
+source ${home}/.bash_colors
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007";'
 PS1="${WHITE}[${RED}\h ${WHITE}\W]$ ${NORMAL}"
 
@@ -118,4 +123,4 @@ HISTTIMEFORMAT="%Y.%m.%d %H:%M:%S "
 HISTSIZE=10000
 
 # source django bash completion script
-source ~/.django_bash_completion.sh
+source ${home}/.django_bash_completion.sh
