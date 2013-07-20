@@ -125,3 +125,13 @@ HISTSIZE=10000
 
 # source django bash completion script
 source ${home}/.django_bash_completion.sh
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
+	source `brew --prefix`/etc/bash_completion.d/vagrant
+    else
+	echo -e "${YELLOW}vagrant completion not enabled. to enable:${NORMAL}"
+	echo -e "  ${YELLOW}brew tap homebrew/completions${NORMAL}"
+	echo -e "  ${YELLOW}brew tap vagrant-completion${NORMAL}"
+    fi
+fi
