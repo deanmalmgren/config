@@ -59,8 +59,20 @@ alias rm='rm -i'
 #     /bin/rm -f "$tmp_fifo"
 # }
 
-# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
-complete -W "$(echo `grep "^Host " ${home}/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
+# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck. use a function
+# to autocomplete so it works if a new host is added to ~/.ssh/config
+# during a shell session
+_sshautocomplete() {
+    f=${home}/.ssh/config
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    if [ -f ${f} ]; then
+	hosts=$(echo `grep "^Host " ${f} | awk '{print $2}' | sort -u`;)
+	COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
+	return 0;
+    fi
+    return 1;
+}
+complete -F _sshautocomplete ssh scp sftp
 
 # configure color output for grep
 GREP_COLOR="1;32"
