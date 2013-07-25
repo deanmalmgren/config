@@ -60,8 +60,6 @@ alias rm='rm -i'
 # }
 
 # autocompletion for ssh/scp/sftp http://bit.ly/U9DYck
-mkdir -p ${home}/.ssh/
-touch ${home}/.ssh/config
 complete -W "$(echo `grep "^Host " ${home}/.ssh/config | awk '{print $2}' | sort -u`;)" ssh scp sftp
 
 # configure color output for grep
