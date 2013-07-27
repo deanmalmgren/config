@@ -27,7 +27,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # https://github.com/mxcl/homebrew/issues/20644
     export PYTHONPATH=$(brew --prefix)/lib/python2.6/site-packages:$PYTHONPATH
 
-# Linux-specific aliases
+    # Linux-specific aliases
 elif [[ "$(uname)" == "Linux" ]]; then
     alias ls='ls --color=always -h'
     alias la='ls --color=always -ha'
@@ -37,7 +37,7 @@ elif [[ "$(uname)" == "Linux" ]]; then
     # set the emacs bin
     emacsbin='/usr/bin/emacs'
 
-# issue warning
+    # issue warning
 else
     echo "unspecified " `uname`
 fi
@@ -66,9 +66,9 @@ _sshautocomplete() {
     f=${home}/.ssh/config
     cur="${COMP_WORDS[COMP_CWORD]}"
     if [ -f ${f} ]; then
-	hosts=$(echo `grep "^Host " ${f} | awk '{print $2}' | sort -u`;)
-	COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
-	return 0;
+        hosts=$(echo `grep "^Host " ${f} | awk '{print $2}' | sort -u`)
+        COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
+        return 0;
     fi
     return 1;
 }
@@ -81,13 +81,13 @@ alias grep='grep --color=auto'
 # configure cal to print out calendar for current year by default
 function cal () {
     if [ $# -eq 0 ]; then
-	/usr/bin/cal `date "+%Y"`;
+        /usr/bin/cal `date "+%Y"`;
     else
-	/usr/bin/cal $*;
+        /usr/bin/cal $*;
     fi;
 }
 
-# set up editor 
+# set up editor
 export EDITOR=$emacsbin" -nw"
 if [[ "$(uname)" == "Darwin" ]]; then
     alias emacs=$emacsbin' -geometry 80x57'
@@ -99,19 +99,19 @@ if [ ! $DISPLAY ] ; then
 fi
 
 # purge function to clear out crap from directories
-function purge { 
+function purge {
     JUNK_FILES="*~ *.pyc *.fig.bak *.bib.bak *.blg *.end *.dvi *.aux *.bbl *.log *.toc *.nav *.out *.snm *.o *.orig "
     DUMMY_FILES="aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz"
-    for f in ${JUNK_FILES} ${DUMMY_FILES}; do 
-        if [ -f $f ]; then 
-            rm -f ${f} ; 
-        fi; 
-    done; 
+    for f in ${JUNK_FILES} ${DUMMY_FILES}; do
+        if [ -f $f ]; then
+            rm -f ${f} ;
+        fi;
+    done;
 }
 
 # quick and dirty function to get ip address
-function whatsmyip { 
-    curl -s ifconfig.me/ip; 
+function whatsmyip {
+    curl -s ifconfig.me/ip;
 }
 
 # override the builtin cd function
@@ -119,7 +119,7 @@ function whatsmyip {
 function cd() {
     d="$*";
     if [ $# -eq 0 ]; then
-	d=${HOME};
+        d=${HOME};
     fi;
     builtin cd "${d}" && ls
 }
@@ -133,15 +133,19 @@ PS1="${WHITE}[${RED}\h ${WHITE}\W]$ ${NORMAL}"
 HISTTIMEFORMAT="%Y.%m.%d %H:%M:%S "
 HISTSIZE=10000
 
-# source django bash completion script
+# autocompletions
 source ${home}/.django_bash_completion.sh
-
 if [[ "$(uname)" == "Darwin" ]]; then
+
+    # mercurial completion
+    source `brew --prefix`/etc/bash_completion.d/hg-completion.bash
+
+    # vagrant autocomplete
     if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
-	source `brew --prefix`/etc/bash_completion.d/vagrant
+        source `brew --prefix`/etc/bash_completion.d/vagrant
     else
-	echo -e "${YELLOW}vagrant completion not enabled. to enable:${NORMAL}"
-	echo -e "  ${YELLOW}brew tap homebrew/completions${NORMAL}"
-	echo -e "  ${YELLOW}brew tap vagrant-completion${NORMAL}"
+        echo -e "${YELLOW}vagrant completion not enabled. to enable:${NORMAL}"
+        echo -e "  ${YELLOW}brew tap homebrew/completions${NORMAL}"
+        echo -e "  ${YELLOW}brew install vagrant-completion${NORMAL}"
     fi
 fi
