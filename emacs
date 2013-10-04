@@ -10,9 +10,6 @@
 (setq inhibit-startup-message t)
 (add-hook 'emacs-startup-hook 'delete-other-windows)
 
-;; add the site-lisp directory to the load path
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
-
 ;; try to get emacs to load faster...this is ridiculous
 ;; EUREKA!!! http://ubuntuforums.org/archive/index.php/t-183638.html
 (modify-frame-parameters nil '((wait-for-wm . nil)))
@@ -30,45 +27,6 @@
 
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
-
-;; NOTE: if color-theme is breaking, make sure it is properly
-;; installed on this system (http://www.nongnu.org/color-theme/). In
-;; ubuntu, this means running
-;;
-;; $ sudo apt-get install emacs-goodies-el
-
-;; ;; specify colors https://github.com/bbatsov/zenburn-emacs 
-;; (when (= emacs-major-version 23)
-;;   (when (= emacs-minor-version 1)
-;;     (require 'color-theme)
-;;     (load "~/.emacs.d/site-lisp/zenburn-23.1.1")
-;;     (eval-after-load "color-theme"
-;;       '(progn
-;;   	 (color-theme-zenburn)))
-;;   )
-;;   (when (> emacs-minor-version 1)
-;;     (require 'color-theme-zenburn)
-;;     (color-theme-zenburn)
-;;   )
-;; )
-;; (when (equal emacs-major-version 24)
-;;   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/") 
-;;   (load-theme 'zenburn t)
-;; )
-
-;; use solarized color them
-;; https://github.com/sellout/emacs-color-theme-solarized
-(when (< emacs-major-version 24)
-  (add-to-list 'load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
-  (require 'color-theme-solarized)
-  (color-theme-solarized-dark)
-  ;; (color-theme-solarized-light)
-)
-(when (equal emacs-major-version 24)
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized") 
-  ;; (load-theme 'solarized-dark t)
-  (load-theme 'solarized-light t)
-)
 
 ;; set font size
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
@@ -89,48 +47,6 @@
 ;; turn off the friggin bell
 (setq-default visible-bell t)
 
-;;====================================================== file-specific bindings
-;; set python block comment prefix
-(defvar py-block-comment-prefix "##")
-
-;; deal with javascript mode
-;; http://xahlee.org/emacs/emacs_installing_packages.html
-(autoload #'espresso-mode "espresso" "Start espresso-mode" t)
-(add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
-;; (add-hook 'espresso-mode-hook '(setq default-tab-width 2))
-;; (add-hook 'espresso-mode-hook '(setq indent-tabs-mode nil))
-
-;; deal with scss mode
-;; http://www.emacswiki.org/emacs/ScssMode
-(autoload 'scss-mode "scss-mode")
-(add-to-list 'auto-mode-alist '("\\.scss$" . scss-mode))
-(setq scss-compile-at-save nil)
-(setq css-indent-offset 2)
-
-;; deal with editing xsd documents
-;; HACKED TOGETHER ON METRA, PROBABLY BETTER WAY TO DO THIS
-(autoload 'xml-mode "xml-mode")
-(add-to-list 'auto-mode-alist '("\\.xsd$" . xml-mode))
-
-;; setup markdown mode. for details, see here:
-;; http://jblevins.org/projects/markdown-mode/
-(autoload 'markdown-mode "markdown-mode.el" 
-	  "Major mode for editing Markdown files" t) 
-(add-to-list 'auto-mode-alist '("\\.text" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mdt" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.mdwn" . markdown-mode))
-
-;; setup handlebars mode. for details, see here:
-;; https://github.com/danielevans/handlebars-mode
-(add-to-list 'load-path "~/.emacs.d/vendor/")
-(require 'handlebars-mode)
-
-;; Setup puppet-mode for autoloading
-(autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
-(add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
-
 ;; nice for auto-indenting when possible
 (defun indent ()
   "indent whole buffer"
@@ -143,3 +59,54 @@
 (global-set-key [f4] 'goto-line)
 (global-set-key [f5] 'query-replace)
 (global-set-key [f6] 'indent)
+
+;;====================================================================== el-get
+;; basic setup https://github.com/dimitri/el-get#basic-setup
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+
+;; auto install missing packages everytime emacs starts, it will check
+;; for those packages, if they are not installed, auto install them
+(defvar tmtxt/el-get-packages
+  '(
+    scss-mode 
+    markdown-mode 
+    puppet-mode 
+    color-theme-solarized
+))
+(dolist (p tmtxt/el-get-packages)
+  (when (not (el-get-package-exists-p p))
+	(el-get-install p)))
+
+;; sync everything
+(el-get 'sync)
+
+;; this is where all init configuration goes for supported
+;; recipes. these are auto-installed on startup
+;; https://github.com/dimitri/el-get#package-setup
+(setq el-get-user-package-directory "~/.emacs.d/el-get-init-files/")
+
+;; color theme configuration once everything has been installed
+;;(load-theme 'solarized-dark t)
+(load-theme 'solarized-light t)
+
+;; configure scss mode
+(setq scss-compile-at-save nil)
+(setq css-indent-offset 2)
+
+;; ;;====================================================== file-specific bindings
+;; ;; deal with javascript mode
+;; ;; http://xahlee.org/emacs/emacs_installing_packages.html
+;; (autoload #'espresso-mode "espresso" "Start espresso-mode" t)
+;; (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
+;; (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
+;; ;; (add-hook 'espresso-mode-hook '(setq default-tab-width 2))
+;; ;; (add-hook 'espresso-mode-hook '(setq indent-tabs-mode nil))
+
+
