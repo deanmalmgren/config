@@ -33,7 +33,7 @@
 (set-face-attribute 'default nil :height 100)
 
 ;; set frame size --- i can't believe that this can not be done from
-;; the command line.  what the fuck
+;; the command line. what the fuck
 (set-frame-width (selected-frame) 80)
 ;;(set-frame-height (selected-frame) 80)
 
@@ -87,11 +87,7 @@
 ;; sync everything
 (el-get 'sync)
 
-;; this is where all init configuration goes for supported
-;; recipes. these are auto-installed on startup
-;; https://github.com/dimitri/el-get#package-setup
-(setq el-get-user-package-directory "~/.emacs.d/el-get-init-files/")
-
+;;====================================================== package configurations
 ;; color theme configuration once everything has been installed
 ;;(load-theme 'solarized-dark t)
 (load-theme 'solarized-light t)
@@ -99,14 +95,5 @@
 ;; configure scss mode
 (setq scss-compile-at-save nil)
 (setq css-indent-offset 2)
-
-;; ;;====================================================== file-specific bindings
-;; ;; deal with javascript mode
-;; ;; http://xahlee.org/emacs/emacs_installing_packages.html
-;; (autoload #'espresso-mode "espresso" "Start espresso-mode" t)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
-;; (add-to-list 'auto-mode-alist '("\\.json$" . espresso-mode))
-;; ;; (add-hook 'espresso-mode-hook '(setq default-tab-width 2))
-;; ;; (add-hook 'espresso-mode-hook '(setq indent-tabs-mode nil))
 
 
