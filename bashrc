@@ -159,3 +159,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
         echo -e "  ${YELLOW}brew install vagrant-completion${NORMAL}"
     fi
 fi
+
+# set the LC_ALL environment variable to get `sort -n` to work in the
+# expected way and to speed up grep commands
+export LC_ALL=C
