@@ -94,8 +94,8 @@
 
 ;;====================================================== package configurations
 ;; color theme configuration once everything has been installed
-;;(load-theme 'solarized-dark t)
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
+;;(load-theme 'solarized-light t)
 
 ;; configure scss mode
 (setq scss-compile-at-save nil)
