@@ -21,7 +21,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
     alias top='top -o cpu'
 
     # set the emacs bin
-    emacsbin='/Users/rdm/Applications/Emacs.app/Contents/MacOS/Emacs'
+    emacsbin='/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs'
 
     # set PYTHONPATH so that meld will work
     # https://github.com/mxcl/homebrew/issues/20644
@@ -103,9 +103,9 @@ if [[ "$(uname)" == "Darwin" ]]; then
     alias emacs=$emacsbin' -geometry 80x57'
 else
     alias emacs=$emacsbin' -fh'
-fi
-if [ ! $DISPLAY ] ; then
-    alias emacs=$emacsbin' -nw'
+    if [ ! $DISPLAY ] ; then
+	alias emacs=$emacsbin' -nw'
+    fi
 fi
 
 # purge function to clear out crap from directories
