@@ -36,3 +36,5 @@ xx
 yy
 zz
 
+# vagrant directory
+.vagrant
