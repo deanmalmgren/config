@@ -48,14 +48,6 @@ def local_setup_softlinks(homedir):
             )
             replace_with_softlink(filename, linkname)
 
-    # # create soft links for other files
-    # filenames = (
-    #     os.path.join(".ssh", "config"),
-    # )
-    # for filename in filenames:
-    #     linkname = os.path.expanduser(os.path.join(homedir, filename))
-    #     replace_with_softlink(os.path.join(this_dirname, filename), linkname)
-
 class ConfigParser(OptionParser):
     __doc__ = __doc__
 
