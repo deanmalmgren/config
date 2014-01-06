@@ -1,2 +1,2 @@
 # delete files over thirty days old from Downloads directory
-0 12 * * * find /Users/rdm/Downloads -mtime +30 -print -exec rm -rf "{}" \;
+0 12 * * * find ~/Downloads -mtime +30 -print -exec rm -rf "{}" \;
