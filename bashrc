@@ -163,3 +163,12 @@ fi
 # set the LC_ALL environment variable to get `sort -n` to work in the
 # expected way and to speed up grep commands
 export LC_ALL=C
+
+# enable virtualenvwrapper
+# http://virtualenvwrapper.readthedocs.org/en/latest/
+WORKON_HOME=~/.virtualenvs
+mkdir -p ${WORKON_HOME}
+vew=/usr/local/bin/virtualenvwrapper.sh
+if [ -e ${vew} ]; then 
+    source ${vew}
+fi
