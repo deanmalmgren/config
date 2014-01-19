@@ -84,6 +84,7 @@
     markdown-mode 
     puppet-mode 
     color-theme-solarized
+    yaml-mode
 ))
 (dolist (p tmtxt/el-get-packages)
   (when (not (el-get-package-exists-p p))
