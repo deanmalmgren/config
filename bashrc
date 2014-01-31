@@ -134,9 +134,12 @@ function cd() {
     builtin cd "${d}" && ls
 }
 
-# define interactive shell
+# define interactive shell.
 source ${home}/.bash_colors
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007";'
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}"; echo -ne "\007"'
+if [[ "$(uname)" == "Darwin" ]]; then
+    PROMPT_COMMAND="${PROMPT_COMMAND};update_terminal_cwd;"
+fi
 PS1="${WHITE}[${RED}\h ${WHITE}\W]$ ${NORMAL}"
 
 # remember history of all commands. 
