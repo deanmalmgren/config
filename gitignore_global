@@ -38,3 +38,6 @@ zz
 
 # vagrant directory
 .vagrant
+
+# npm modules that are stored locally
+node_modules

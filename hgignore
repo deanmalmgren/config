@@ -69,3 +69,6 @@ ww
 xx
 yy
 zz
+
+# npm modules that are stored locally
+node_modules
