@@ -108,17 +108,6 @@ else
     fi
 fi
 
-# purge function to clear out crap from directories
-function purge {
-    JUNK_FILES="*~ *.pyc *.fig.bak *.bib.bak *.blg *.end *.dvi *.aux *.bbl *.log *.toc *.nav *.out *.snm *.o *.orig "
-    DUMMY_FILES="aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz"
-    for f in ${JUNK_FILES} ${DUMMY_FILES}; do
-        if [ -f $f ]; then
-            rm -f ${f} ;
-        fi;
-    done;
-}
-
 # quick and dirty function to get ip address
 function whatsmyip {
     curl -s ifconfig.me/ip;
