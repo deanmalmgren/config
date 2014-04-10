@@ -27,7 +27,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
     # https://github.com/mxcl/homebrew/issues/20644
     export PYTHONPATH=$(brew --prefix)/lib/python2.6/site-packages:$PYTHONPATH
 
-    # Linux-specific aliases
+    # mung the path to favor newer things that are installed via homebrew
+    export PATH=/usr/local/bin:$PATH
+
+# Linux-specific aliases
 elif [[ "$(uname)" == "Linux" ]]; then
     alias ls='ls --color=always -h'
     alias la='ls --color=always -ha'
