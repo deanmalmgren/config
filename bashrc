@@ -139,8 +139,19 @@ HISTSIZE=10000
 source ${home}/.django_bash_completion.sh
 if [[ "$(uname)" == "Darwin" ]]; then
 
-    # mercurial completion
+    # mercurial and git completion
     source `brew --prefix`/etc/bash_completion.d/hg-completion.bash
+    source `brew --prefix`/etc/bash_completion.d/git-completion.bash
+
+    # # TODO: this *requires* bash 4, which looks like its easy enough
+    # # to install and make the default shell. For now, just
+    # # cherrypicking what I want/need above
+    # # http://apple.stackexchange.com/a/24635
+    #
+    # # all of brew completion
+    # if [ -f `brew --prefix`/etc/bash_completion ]; then
+    # 	. `brew --prefix`/etc/bash_completion
+    # fi
 
     # vagrant autocomplete
     if [ -f `brew --prefix`/etc/bash_completion.d/vagrant ]; then
