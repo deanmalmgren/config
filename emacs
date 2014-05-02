@@ -90,8 +90,9 @@
   (when (not (el-get-package-exists-p p))
 	(el-get-install p)))
 
-;; sync everything
+;; sync everything and update that shit
 (el-get 'sync)
+(el-get-update-all 1)
 
 ;;====================================================== package configurations
 ;; color theme configuration once everything has been installed
