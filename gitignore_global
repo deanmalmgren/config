@@ -4,6 +4,9 @@
 # emacs junk
 *~
 
+# python junk
+*.pyc
+
 # OSX junk
 .DS_Store
 .DS_Store?
@@ -41,3 +44,4 @@ zz
 
 # npm modules that are stored locally
 node_modules
+.venv

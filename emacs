@@ -23,7 +23,7 @@
       (concat  "%b - emacs@" system-name))
 
 ;; emacs vc-hg not working properly
-(setq vc-handled-backends nil) 
+(setq vc-handled-backends nil)
 
 ;; make emacs retain hard links appropriatly
 (setq backup-by-copying 1)
@@ -60,6 +60,21 @@
 (global-set-key [f5] 'query-replace)
 (global-set-key [f6] 'indent)
 
+;; have emacs refresh buffers when they change on disk (for example,
+;; after `git pull`)
+;; http://stackoverflow.com/a/1481706/564709
+(global-auto-revert-mode t)
+
+;; remove trailing whitespace as saving
+;; from http://emacswiki.org/emacs/DeletingWhitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; wishlist after using ATOM for a few months
+;; * fuzzy find files in project
+;; * remove whitespace at the end of files (have end of lines above_
+;; * saving project state
+
+
 ;;====================================================================== el-get
 ;; basic setup https://github.com/dimitri/el-get#basic-setup
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -80,9 +95,10 @@
 (defvar tmtxt/el-get-packages
   '(
     floobits
-    scss-mode 
-    markdown-mode 
-    puppet-mode 
+    scss-mode
+    markdown-mode
+    puppet-mode
+    color-theme
     color-theme-solarized
     yaml-mode
 ))
@@ -92,7 +108,7 @@
 
 ;; sync everything and update that shit
 (el-get 'sync)
-(el-get-update-all 1)
+;; (el-get-update-all 1) ;; this forces everything to update on every load
 
 ;;====================================================== package configurations
 ;; color theme configuration once everything has been installed
@@ -102,5 +118,3 @@
 ;; configure scss mode
 (setq scss-compile-at-save nil)
 (setq css-indent-offset 2)
-
-

@@ -18,6 +18,7 @@ hggit =
 # personal aliases
 [alias]
 st = st -S
+diff = diff --color=always
 #heads = heads -t
 
 # trusted users

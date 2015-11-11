@@ -72,3 +72,6 @@ zz
 
 # npm modules that are stored locally
 node_modules
+
+# virtualenv declarations
+.venv

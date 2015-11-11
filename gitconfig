@@ -10,3 +10,5 @@
 	excludesfile = ~/.gitignore_global
 [push]
 	default = matching
+[credential]
+	helper = osxkeychain

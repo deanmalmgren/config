@@ -62,30 +62,30 @@ alias rm='rm -i'
 #     /bin/rm -f "$tmp_fifo"
 # }
 
-# autocompletion for ssh/scp/sftp http://bit.ly/U9DYck. use a function
-# to autocomplete so it works if a new host is added to ~/.ssh/config
-# during a shell session
-__sshhosts() {
-    f=${home}/.ssh/config
-    if [ -f ${f} ]; then
-	echo `grep "^Host " ${f} | awk '{print $2}' | sort -u`
-    else
-	echo ''
-    fi    
-}
-_sshautocomplete() {
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    hosts=$(__sshhosts)
-    COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
-}
-_scpautocomplete() {
-    cur="${COMP_WORDS[COMP_CWORD]}"
-    hosts=$(__sshhosts)
-    files=$(ls -A)
-    COMPREPLY=($(compgen -W "${hosts} ${files}" -- ${cur}))
-}
-complete -F _sshautocomplete ssh
-complete -F _scpautocomplete scp sftp
+# # autocompletion for ssh/scp/sftp http://bit.ly/U9DYck. use a function
+# # to autocomplete so it works if a new host is added to ~/.ssh/config
+# # during a shell session
+# __sshhosts() {
+#     f=${home}/.ssh/config
+#     if [ -f ${f} ]; then
+# 	echo `grep "^Host " ${f} | awk '{print $2}' | sort -u`
+#     else
+# 	echo ''
+#     fi    
+# }
+# _sshautocomplete() {
+#     cur="${COMP_WORDS[COMP_CWORD]}"
+#     hosts=$(__sshhosts)
+#     COMPREPLY=($(compgen -W "${hosts}" -- ${cur}))
+# }
+# _scpautocomplete() {
+#     cur="${COMP_WORDS[COMP_CWORD]}"
+#     hosts=$(__sshhosts)
+#     files=$(ls -A)
+#     COMPREPLY=($(compgen -W "${hosts} ${files}" -- ${cur}))
+# }
+# complete -F _sshautocomplete ssh
+# complete -F _scpautocomplete scp sftp
 
 # configure color output for grep
 GREP_COLOR="1;32"
